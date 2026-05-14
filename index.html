@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Benchworks — the honest SaaS for service businesses</title>
+<meta name="description" content="An AI-native, WhatsApp-first shop OS for independent repair shops. No 20% markup. No auto-renewing contracts. Your data, your keys, your call. Coming soon." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://benchworks.app/" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Benchworks — the honest SaaS for service businesses" />
+<meta property="og:description" content="An AI-native, WhatsApp-first shop OS for independent repair shops. Coming soon." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://benchworks.app/" />
+
+<!-- Favicon (inline SVG, anvil-ish minimal mark) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF6B35'/%3E%3Cpath d='M8 18h16M10 14h12M11 18v3M21 18v3' stroke='%231a1a1a' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0f0f10;
+    --bg-card: #18181a;
+    --fg: #f5f5f7;
+    --fg-dim: #a0a0a8;
+    --fg-dimmer: #6b6b73;
+    --accent: #FF6B35;
+    --accent-hover: #ff7d4d;
+    --border: #2a2a2d;
+  }
+  html, body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+  }
+  .container {
+    max-width: 720px;
+    width: 100%;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: rgba(255, 107, 53, 0.12);
+    color: var(--accent);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin-bottom: 28px;
+  }
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  h1 {
+    font-size: clamp(36px, 6vw, 56px);
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+  h1 .accent { color: var(--accent); }
+  .tagline {
+    font-size: clamp(18px, 2.5vw, 22px);
+    color: var(--fg-dim);
+    font-weight: 400;
+    margin-bottom: 36px;
+    max-width: 600px;
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  @media (min-width: 640px) {
+    .pillars { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  .pillar {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 18px 16px;
+  }
+  .pillar-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .pillar-text {
+    font-size: 14.5px;
+    color: var(--fg);
+    line-height: 1.45;
+  }
+  .description {
+    color: var(--fg-dim);
+    font-size: 16px;
+    margin-bottom: 32px;
+    max-width: 600px;
+  }
+  .description strong { color: var(--fg); font-weight: 500; }
+  .cta {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+  .cta h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .cta p {
+    color: var(--fg-dim);
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+  .cta a.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #1a1a1a;
+    text-decoration: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.15s;
+  }
+  .cta a.button:hover { background: var(--accent-hover); }
+  .cta a.button .arrow {
+    transition: transform 0.15s;
+  }
+  .cta a.button:hover .arrow { transform: translateX(2px); }
+  .verticals {
+    color: var(--fg-dimmer);
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+  .verticals strong { color: var(--fg-dim); font-weight: 500; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+    color: var(--fg-dimmer);
+    font-size: 13px;
+  }
+  footer a {
+    color: var(--fg-dim);
+    text-decoration: none;
+  }
+  footer a:hover { color: var(--fg); }
+</style>
+</head>
+<body>
+
+<main>
+  <div class="container">
+
+    <div class="badge">
+      <span class="badge-dot"></span>
+      <span>Building now &middot; early access soon</span>
+    </div>
+
+    <h1>The honest SaaS for service businesses tired of being <span class="accent">held hostage</span>.</h1>
+
+    <p class="tagline">Run your shop. Keep your keys. Cancel anytime.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-label">Your data</span>
+        <span class="pillar-text">Free export, any time. No ransom.</span>
+      </div>
+      <div class="pillar">
+        <span class="pillar-label">Your keys</span>
+        <span class="pillar-text">BYO AI keys. No 20% markup.</span>
+      </div>
+      <div class="pillar">
+        <span class="pillar-label">Your call</span>
+        <span class="pillar-text">Cancel in one click. Month-to-month.</span>
+      </div>
+    </div>
+
+    <p class="description">
+      <strong>Benchworks</strong> is an AI-native, WhatsApp-first shop OS for independent repair businesses &mdash; built by a shop, for shops. We've spent 15 years running a real repair workshop, and the tools we wanted didn't exist. So we're building them.
+    </p>
+
+    <div class="cta">
+      <h2>Want to be one of the first 20 design partners?</h2>
+      <p>Free for the first 3 months, direct line to the team, your feedback in the product. Drop us a line.</p>
+      <a class="button" href="mailto:shaun@consoleservicecentre.co.za?subject=Benchworks%20design%20partner%20interest&amp;body=Hi%20%E2%80%94%20I%20saw%20your%20holding%20page%20at%20benchworks.app.%20Tell%20me%20more.%0D%0A%0D%0AMy%20shop%20is%3A%20%0D%0AWhat%20we%20repair%3A%20%0D%0AHow%20we%20work%20today%20(paper%2FCRM%2Fother)%3A%20%0D%0A%0D%0AThanks.">
+        <span>Email us &mdash; let's talk</span>
+        <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+
+    <p class="verticals">
+      Phase 1: <strong>console, phone, computer, appliance, watch, jewellery, instrument, bike, locksmith &amp; small-engine</strong> repair shops. <strong>SA, UK, Australia</strong> first.
+    </p>
+
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 Benchworks &middot; <a href="mailto:shaun@consoleservicecentre.co.za">contact</a>
+</footer>
+
+</body>
+</html>
