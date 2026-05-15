@@ -15,45 +15,41 @@
 <meta property="og:url" content="https://benchworks.app/" />
 
 <!-- Theme colour -->
-<meta name="theme-color" content="#0a1628" />
+<meta name="theme-color" content="#0d1a2e" />
 
-<!-- Favicon (blueprint crosshair on midnight navy) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a1628'/%3E%3Ccircle cx='16' cy='16' r='8' stroke='%235EB8FF' stroke-width='1.5' fill='none'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%235EB8FF'/%3E%3Cpath d='M16 3v6M16 23v6M3 16h6M23 16h6' stroke='%235EB8FF' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+<!-- Favicon: a soft serif B on midnight navy -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d1a2e'/%3E%3Ctext x='16' y='23.5' font-family='Georgia, serif' font-size='22' font-weight='700' text-anchor='middle' fill='%237CC5FF'%3EB%3C/text%3E%3C/svg%3E" />
 
-<!-- Fonts: Fraunces (display) · JetBrains Mono (technical) · IBM Plex Sans (body) -->
+<!-- Fonts: Fraunces (display + accents) + IBM Plex Sans (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
   /* ─────────────────────────────────────────────────────────────
      BENCHWORKS HOLDING PAGE
-     Aesthetic: engineering blueprint, dark mode, 2026
+     Aesthetic: editorial manifesto, dark mode, 2026
      ───────────────────────────────────────────────────────────── */
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    /* Palette — midnight navy + drafting cyan */
-    --bg:           #0a1628;
-    --bg-elev:      #0f2038;
-    --bg-card:      #112844;
-    --grid-minor:   rgba(94, 184, 255, 0.045);
-    --grid-major:   rgba(94, 184, 255, 0.085);
-    --line:         rgba(94, 184, 255, 0.18);
-    --line-strong:  rgba(94, 184, 255, 0.42);
-    --accent:       #5EB8FF;
-    --accent-hot:   #00D4FF;
-    --accent-warn:  #FF4D6D;   /* redline annotation only */
-    --fg:           #E8F1FF;
-    --fg-mid:       #8FA8C8;
-    --fg-dim:       #4A5F7F;
+    --bg:           #0d1a2e;
+    --bg-overlay:   rgba(124, 197, 255, 0.04);
+    --fg:           #F4EDD9;
+    --fg-mid:       #A8B8D0;
+    --fg-dim:       #607694;
+    --accent:       #7CC5FF;
+    --accent-soft:  rgba(124, 197, 255, 0.16);
+    --accent-hot:   #00C2FF;
+    --line:         rgba(124, 197, 255, 0.16);
+    --line-strong:  rgba(124, 197, 255, 0.3);
   }
 
   html, body {
     background: var(--bg);
     color: var(--fg);
-    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -61,488 +57,335 @@
     overflow-x: hidden;
   }
 
-  /* Blueprint grid background — minor 32px, major 128px */
-  body {
-    background-image:
-      linear-gradient(to right, var(--grid-minor) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-minor) 1px, transparent 1px),
-      linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px);
-    background-size: 32px 32px, 32px 32px, 128px 128px, 128px 128px;
-    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
-  }
-
-  /* Subtle vignette so corners feel deeper than centre */
+  /* Single soft glow at the top of the page — like a reading lamp */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.4) 100%);
     z-index: 0;
+    background:
+      radial-gradient(ellipse 900px 600px at 50% -8%, rgba(124, 197, 255, 0.075), transparent 70%),
+      radial-gradient(ellipse 600px 800px at 100% 80%, rgba(124, 197, 255, 0.025), transparent 70%);
   }
 
-  /* ── Corner registration marks ───────────────────────────────── */
-  .reg {
-    position: fixed;
-    width: 28px;
-    height: 28px;
-    z-index: 5;
-    pointer-events: none;
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out 0.1s forwards;
+  body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
-  .reg::before, .reg::after {
-    content: '';
-    position: absolute;
-    background: var(--accent);
-  }
-  .reg::before { left: 50%; top: 0; bottom: 0; width: 1.5px; transform: translateX(-50%); }
-  .reg::after  { top: 50%; left: 0; right: 0; height: 1.5px; transform: translateY(-50%); }
-  .reg-tl { top: 18px; left: 18px; }
-  .reg-tr { top: 18px; right: 18px; }
-  .reg-bl { bottom: 18px; left: 18px; }
-  .reg-br { bottom: 18px; right: 18px; }
 
-  /* ── Top status bar ──────────────────────────────────────────── */
+  /* ── Top wordmark row ─────────────────────────────────────────── */
   .topbar {
     position: relative;
     z-index: 4;
-    border-bottom: 1px solid var(--line);
-    padding: 14px 56px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    color: var(--fg-mid);
-    text-transform: uppercase;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    padding: 28px clamp(28px, 5vw, 56px);
     opacity: 0;
-    animation: slideDown 0.5s ease-out 0.3s forwards;
+    animation: fadeIn 0.7s ease-out 0.1s forwards;
   }
-  .topbar-left, .topbar-right { display: flex; gap: 20px; align-items: center; }
-  .topbar .sep { color: var(--fg-dim); }
-  .topbar .live {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+
+  .wordmark {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 36;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .wordmark .dot {
     color: var(--accent);
   }
-  .topbar .live-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--accent-hot);
-    box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.7);
-    animation: pulseDot 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-  .topbar .wordmark {
-    color: var(--fg);
-    font-weight: 600;
-    letter-spacing: 0.12em;
-  }
 
-  /* ── Main layout ─────────────────────────────────────────────── */
-  main {
-    position: relative;
-    z-index: 2;
-    max-width: 880px;
-    margin: 0 auto;
-    padding: clamp(48px, 9vw, 96px) clamp(28px, 6vw, 56px) 64px;
-  }
-
-  /* ── Status badge ─────────────────────────────────────────────── */
-  .badge {
+  .status {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    color: var(--accent);
-    text-transform: uppercase;
-    padding: 7px 14px 7px 12px;
-    background: rgba(94, 184, 255, 0.06);
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    position: relative;
-    margin-bottom: 56px;
-    opacity: 0;
-    animation: fadeUp 0.6s ease-out 0.5s forwards;
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-variation-settings: 'opsz' 14;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    color: var(--fg-mid);
   }
-  .badge::before, .badge::after {
-    content: '';
-    position: absolute;
-    width: 5px; height: 5px;
-    border: 1px solid var(--accent);
-  }
-  .badge::before {
-    top: -3px; left: -3px;
-    border-right: none; border-bottom: none;
-  }
-  .badge::after {
-    bottom: -3px; right: -3px;
-    border-left: none; border-top: none;
-  }
-  .badge-dot {
-    width: 7px; height: 7px;
+  .status .live-dot {
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: var(--accent);
-    animation: pulseDot 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    box-shadow: 0 0 12px rgba(124, 197, 255, 0.7);
+    animation: pulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  /* ── H1 with redline annotation ──────────────────────────────── */
+  /* ── Main editorial column ───────────────────────────────────── */
+  main {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+    padding: clamp(32px, 8vw, 88px) clamp(28px, 6vw, 56px) 88px;
+  }
+
+  /* ── Headline with hand-drawn underline ──────────────────────── */
   h1 {
     font-family: 'Fraunces', Georgia, serif;
     font-optical-sizing: auto;
-    font-variation-settings: 'opsz' 120;
+    font-variation-settings: 'opsz' 144;
     font-weight: 600;
-    font-size: clamp(38px, 6.4vw, 68px);
-    line-height: 1.02;
+    font-size: clamp(38px, 6.2vw, 64px);
+    line-height: 1.04;
     letter-spacing: -0.025em;
     color: var(--fg);
-    margin-bottom: 28px;
+    margin-bottom: 30px;
     max-width: 14ch;
     opacity: 0;
-    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+    animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
   }
 
-  .redline {
+  .emphasis {
     position: relative;
     display: inline-block;
-    color: var(--accent-warn);
+    color: var(--fg);
     white-space: nowrap;
-    margin-right: 4px;
-    font-style: italic;
-    font-weight: 500;
   }
-  .redline::before {
-    content: '';
+  .emphasis-underline {
     position: absolute;
-    inset: -6px -10px -4px -8px;
-    border: 1.5px solid var(--accent-warn);
-    border-radius: 6px 4px 7px 5px;
-    transform: rotate(-0.9deg);
-    opacity: 0.75;
+    left: -2px;
+    right: -2px;
+    bottom: -0.18em;
+    height: 0.32em;
+    width: calc(100% + 4px);
     pointer-events: none;
+    overflow: visible;
   }
-  .redline-note {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: -8px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-style: normal;
-    font-weight: 500;
-    color: var(--accent-warn);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  .emphasis-underline path {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 3.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 320;
+    stroke-dashoffset: 320;
+    animation: drawUnderline 0.95s cubic-bezier(0.55, 0, 0.45, 1) 1.15s forwards;
+    filter: drop-shadow(0 0 6px rgba(124, 197, 255, 0.35));
+  }
+
+  .emphasis-note {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-variation-settings: 'opsz' 24;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--accent);
+    margin: -10px 0 44px;
+    padding-left: 1px;
     opacity: 0;
-    animation: fadeIn 0.6s ease-out 1.3s forwards;
-  }
-  .redline-note::before {
-    content: '';
-    width: 18px;
-    height: 1.5px;
-    background: var(--accent-warn);
+    animation: fadeIn 0.7s ease-out 2.0s forwards;
   }
 
   /* ── Tagline ──────────────────────────────────────────────────── */
   .tagline {
     font-family: 'Fraunces', Georgia, serif;
-    font-variation-settings: 'opsz' 24;
-    font-size: clamp(19px, 2.4vw, 24px);
-    line-height: 1.45;
-    color: var(--fg-mid);
+    font-style: italic;
+    font-variation-settings: 'opsz' 36;
+    font-size: clamp(20px, 2.6vw, 26px);
+    line-height: 1.4;
+    color: var(--fg);
     font-weight: 400;
-    margin: 52px 0 64px;
-    max-width: 32ch;
-    position: relative;
-    padding-left: 22px;
+    margin-bottom: 0;
+    max-width: 28ch;
     opacity: 0;
-    animation: fadeUp 0.6s ease-out 0.95s forwards;
-  }
-  .tagline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 6px;
-    bottom: 6px;
-    width: 2px;
-    background: var(--accent);
+    animation: fadeUp 0.7s ease-out 2.25s forwards;
   }
 
-  /* ── Three pillars as drawing detail callouts ────────────────── */
-  .pillars {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-bottom: 80px;
-  }
-  @media (min-width: 720px) {
-    .pillars { grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  }
-
-  .pillar {
-    position: relative;
-    background: rgba(15, 32, 56, 0.5);
-    border: 1px solid var(--line);
-    padding: 26px 22px 22px;
-    opacity: 0;
-    animation: fadeUp 0.6s ease-out forwards;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .pillar:nth-child(1) { animation-delay: 1.05s; }
-  .pillar:nth-child(2) { animation-delay: 1.15s; }
-  .pillar:nth-child(3) { animation-delay: 1.25s; }
-
-  /* Crosshair corner marks on each pillar */
-  .pillar::before, .pillar::after {
-    content: '';
-    position: absolute;
-    width: 11px;
-    height: 11px;
-    pointer-events: none;
-    background-image:
-      linear-gradient(to right, var(--accent) 0, var(--accent) 11px, transparent 11px),
-      linear-gradient(to bottom, var(--accent) 0, var(--accent) 11px, transparent 11px);
-    background-size: 11px 1.5px, 1.5px 11px;
-    background-repeat: no-repeat;
-  }
-  .pillar::before {
-    top: -1px; left: -1px;
-    background-position: 0 0, 0 0;
-  }
-  .pillar::after {
-    bottom: -1px; right: -1px;
-    background-position: 100% 100%, 100% 100%;
-  }
-  .pillar:hover {
-    border-color: var(--line-strong);
-    background: rgba(15, 32, 56, 0.8);
-  }
-
-  .pillar-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10.5px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    color: var(--accent);
-    text-transform: uppercase;
+  /* ── Section dividers — printer's flourish ──────────────────── */
+  .divider {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 18px;
+    justify-content: center;
+    gap: 14px;
+    margin: clamp(56px, 8vw, 76px) 0;
+    opacity: 0;
+    animation: fadeIn 0.7s ease-out forwards;
   }
-  .pillar-num .num { color: var(--fg-dim); }
-  .pillar-num .sep { width: 14px; height: 1px; background: var(--line); }
+  .divider::before, .divider::after {
+    content: '';
+    width: 44px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--line) 50%, transparent);
+  }
+  .divider::after {
+    background: linear-gradient(to left, transparent, var(--line) 50%, transparent);
+  }
+  .divider .ornament {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  /* Stagger the dividers and pillars */
+  .divider.div-1 { animation-delay: 2.5s; }
+  .divider.div-2 { animation-delay: 3.6s; }
+
+  /* ── Three pillars as editorial callouts ─────────────────────── */
+  .pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .pillar {
+    max-width: 56ch;
+    opacity: 0;
+    animation: fadeUp 0.65s ease-out forwards;
+  }
+  .pillar:nth-child(1) { animation-delay: 2.7s; }
+  .pillar:nth-child(2) { animation-delay: 2.85s; }
+  .pillar:nth-child(3) { animation-delay: 3.0s; }
 
   .pillar-head {
     font-family: 'Fraunces', Georgia, serif;
     font-variation-settings: 'opsz' 60;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 24px;
     line-height: 1.15;
-    color: var(--fg);
-    margin-bottom: 6px;
-    letter-spacing: -0.01em;
+    color: var(--accent);
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
   }
-  .pillar-sub {
-    font-size: 14px;
+  .pillar-body {
+    font-size: 17px;
+    line-height: 1.65;
     color: var(--fg-mid);
-    line-height: 1.5;
+  }
+  .pillar-body strong {
+    color: var(--fg);
+    font-weight: 500;
   }
 
   /* ── Description block ───────────────────────────────────────── */
   .description {
-    font-size: 17px;
-    line-height: 1.65;
-    color: var(--fg-mid);
     max-width: 56ch;
-    margin-bottom: 72px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--fg-mid);
     opacity: 0;
-    animation: fadeUp 0.6s ease-out 1.35s forwards;
+    animation: fadeUp 0.7s ease-out 3.8s forwards;
   }
   .description strong {
     color: var(--fg);
     font-weight: 500;
   }
-  .description .signature {
+  .description .signoff {
     display: block;
-    margin-top: 14px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    margin-top: 18px;
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-variation-settings: 'opsz' 18;
+    font-size: 15px;
     color: var(--accent);
   }
-  .description .signature::before {
+  .description .signoff::before {
     content: '— ';
     color: var(--fg-dim);
+    font-style: normal;
   }
 
-  /* ── CTA stamp ───────────────────────────────────────────────── */
+  /* ── CTA panel (invitation, not stamp) ───────────────────────── */
   .cta {
-    position: relative;
-    background: linear-gradient(180deg, rgba(0, 212, 255, 0.04) 0%, rgba(94, 184, 255, 0.02) 100%);
-    border: 1px solid var(--line-strong);
-    padding: 36px 36px 32px;
-    margin-bottom: 72px;
+    margin-top: 64px;
+    padding: 40px clamp(28px, 4vw, 44px);
+    background: var(--bg-overlay);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--accent);
+    border-radius: 2px;
+    max-width: 60ch;
     opacity: 0;
-    animation: fadeUp 0.7s ease-out 1.45s forwards;
-  }
-  /* Corner brackets */
-  .cta::before, .cta::after {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    pointer-events: none;
-  }
-  .cta::before {
-    top: -1px; left: -1px;
-    border-top: 2px solid var(--accent-hot);
-    border-left: 2px solid var(--accent-hot);
-  }
-  .cta::after {
-    bottom: -1px; right: -1px;
-    border-bottom: 2px solid var(--accent-hot);
-    border-right: 2px solid var(--accent-hot);
-  }
-
-  .cta-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.22em;
-    color: var(--accent-hot);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .cta-label::before {
-    content: '';
-    width: 8px; height: 8px;
-    background: var(--accent-hot);
+    animation: fadeUp 0.8s ease-out 4.0s forwards;
   }
   .cta h2 {
     font-family: 'Fraunces', Georgia, serif;
     font-variation-settings: 'opsz' 80;
     font-weight: 600;
-    font-size: clamp(22px, 2.8vw, 28px);
+    font-size: clamp(24px, 2.8vw, 30px);
     line-height: 1.18;
-    margin-bottom: 12px;
     letter-spacing: -0.015em;
     color: var(--fg);
+    margin-bottom: 14px;
   }
   .cta p {
     color: var(--fg-mid);
-    font-size: 15.5px;
-    line-height: 1.55;
-    margin-bottom: 26px;
-    max-width: 54ch;
-  }
-  .cta a.button {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    background: var(--accent-hot);
-    color: #051019;
-    text-decoration: none;
-    padding: 14px 22px 14px 24px;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    border-radius: 2px;
-    box-shadow:
-      0 0 0 1px rgba(0, 212, 255, 0.4),
-      0 0 24px rgba(0, 212, 255, 0.15);
-    transition: box-shadow 0.2s ease, transform 0.15s ease;
-  }
-  .cta a.button:hover {
-    box-shadow:
-      0 0 0 1px rgba(0, 212, 255, 0.6),
-      0 0 40px rgba(0, 212, 255, 0.35);
-    transform: translateY(-1px);
-  }
-  .cta a.button .arrow {
-    display: inline-block;
-    transition: transform 0.2s ease;
-  }
-  .cta a.button:hover .arrow {
-    transform: translateX(3px);
+    font-size: 16.5px;
+    line-height: 1.65;
+    margin-bottom: 30px;
   }
 
-  /* ── Verticals manifest ──────────────────────────────────────── */
+  a.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    color: var(--fg);
+    text-decoration: none;
+    padding: 13px 22px;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0;
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      transform 0.15s ease,
+      box-shadow 0.25s ease;
+  }
+  a.button:hover {
+    background: var(--accent);
+    color: #051019;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px -10px rgba(124, 197, 255, 0.5);
+  }
+  a.button .arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+    font-family: 'Fraunces', Georgia, serif;
+  }
+  a.button:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Verticals — soft scope note ─────────────────────────────── */
   .verticals {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
+    margin-top: 64px;
+    max-width: 56ch;
+    font-size: 15px;
     line-height: 1.7;
     color: var(--fg-dim);
-    letter-spacing: 0.04em;
-    margin-bottom: 56px;
-    padding-top: 22px;
-    border-top: 1px dashed var(--line);
     opacity: 0;
-    animation: fadeUp 0.6s ease-out 1.55s forwards;
+    animation: fadeUp 0.7s ease-out 4.25s forwards;
   }
-  .verticals .label {
+  .verticals .scope-label {
     display: block;
-    text-transform: uppercase;
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-variation-settings: 'opsz' 16;
+    font-size: 14px;
     color: var(--accent);
-    letter-spacing: 0.18em;
-    font-size: 10.5px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
   .verticals strong {
     color: var(--fg-mid);
     font-weight: 500;
-  }
-  .verticals .geo {
-    color: var(--accent);
-    font-weight: 600;
-  }
-
-  /* ── Title block (signature engineering drawing element) ───── */
-  .titleblock {
-    margin-top: 64px;
-    border: 1px solid var(--line);
-    background: rgba(17, 40, 68, 0.4);
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    opacity: 0;
-    animation: fadeUp 0.6s ease-out 1.7s forwards;
-  }
-  .titleblock div {
-    padding: 9px 14px;
-    border-bottom: 1px solid var(--line);
-  }
-  .titleblock div:nth-last-child(-n+2) {
-    border-bottom: none;
-  }
-  .titleblock .key {
-    color: var(--fg-dim);
-    text-transform: uppercase;
-    border-right: 1px solid var(--line);
-  }
-  .titleblock .val {
-    color: var(--fg);
-    text-transform: uppercase;
-  }
-  .titleblock .val.accent {
-    color: var(--accent);
   }
 
   /* ── Footer ──────────────────────────────────────────────────── */
@@ -550,21 +393,25 @@
     position: relative;
     z-index: 2;
     border-top: 1px solid var(--line);
-    padding: 22px 56px;
+    margin-top: 64px;
+    padding: 28px clamp(28px, 5vw, 56px);
     text-align: center;
+    font-size: 14px;
     color: var(--fg-dim);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 4.5s forwards;
   }
   footer a {
     color: var(--fg-mid);
     text-decoration: none;
-    transition: color 0.15s;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
   }
-  footer a:hover { color: var(--accent); }
-  footer .sep { color: var(--fg-dim); margin: 0 14px; }
+  footer a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  footer .sep { color: var(--fg-dim); margin: 0 10px; }
 
   /* ── Animations ──────────────────────────────────────────────── */
   @keyframes fadeIn {
@@ -572,22 +419,15 @@
     to   { opacity: 1; }
   }
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-8px); }
-    to   { opacity: 1; transform: translateY(0); }
+  @keyframes drawUnderline {
+    to { stroke-dashoffset: 0; }
   }
-  @keyframes pulseDot {
-    0%, 100% {
-      opacity: 1;
-      box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.5);
-    }
-    50% {
-      opacity: 0.55;
-      box-shadow: 0 0 0 6px rgba(0, 212, 255, 0);
-    }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 12px rgba(124, 197, 255, 0.7); }
+    50%      { opacity: 0.5; box-shadow: 0 0 4px rgba(124, 197, 255, 0.3); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -596,134 +436,119 @@
       animation-delay: 0s !important;
       transition-duration: 0.001s !important;
     }
+    .emphasis-underline path { stroke-dashoffset: 0; }
   }
 
   /* ── Mobile tweaks ───────────────────────────────────────────── */
-  @media (max-width: 720px) {
+  @media (max-width: 640px) {
     .topbar {
-      padding: 12px 20px;
-      flex-direction: column;
-      gap: 6px;
-      align-items: flex-start;
-      font-size: 10px;
+      padding-top: 22px;
+      padding-bottom: 22px;
     }
-    .topbar-right { display: none; }
-    .reg { width: 20px; height: 20px; }
-    .reg-tl, .reg-tr { top: 12px; }
-    .reg-tl, .reg-bl { left: 12px; }
-    .reg-tr, .reg-br { right: 12px; }
-    .reg-bl, .reg-br { bottom: 12px; }
-    main { padding-top: 56px; }
-    .cta { padding: 28px 22px 26px; }
-    .titleblock { grid-template-columns: 90px 1fr; font-size: 10px; }
-    footer { padding: 18px 20px; font-size: 10px; }
+    .status {
+      font-size: 13px;
+    }
+    h1 {
+      max-width: 100%;
+    }
+    .emphasis-note {
+      font-size: 15px;
+      margin-bottom: 36px;
+    }
+    .cta {
+      padding: 32px 24px;
+    }
+    .pillars { gap: 30px; }
+    footer { font-size: 13px; padding: 22px 24px; }
+    .divider { margin: 52px 0; }
   }
 
-  /* Hide bottom footer corner marks behind the footer to avoid overlap */
-  @media (max-width: 480px) {
-    .redline-note { font-size: 9.5px; }
-    h1 { font-size: 36px; }
+  @media (max-width: 400px) {
+    .status .label { display: none; }
+  }
+
+  /* Selection colour */
+  ::selection {
+    background: var(--accent);
+    color: #051019;
   }
 </style>
 </head>
 <body>
 
-<!-- Corner registration marks -->
-<div class="reg reg-tl" aria-hidden="true"></div>
-<div class="reg reg-tr" aria-hidden="true"></div>
-<div class="reg reg-bl" aria-hidden="true"></div>
-<div class="reg reg-br" aria-hidden="true"></div>
-
-<div class="topbar" aria-hidden="true">
-  <div class="topbar-left">
-    <span><span class="wordmark">BENCHWORKS</span> &nbsp;/&nbsp; DWG R0.1</span>
-    <span class="sep">·</span>
-    <span class="live"><span class="live-dot"></span> DRAFTING NOW</span>
-  </div>
-  <div class="topbar-right">
-    <span>SCALE 1:1</span>
-    <span class="sep">·</span>
-    <span>SHEET 01 / 01</span>
-    <span class="sep">·</span>
-    <span>REV 2026-05</span>
-  </div>
-</div>
+<header class="topbar">
+  <a class="wordmark" href="/">Benchworks<span class="dot">.</span></a>
+  <span class="status">
+    <span class="live-dot" aria-hidden="true"></span>
+    <span class="label">building now &middot; early access soon</span>
+  </span>
+</header>
 
 <main>
 
-  <div class="badge">
-    <span class="badge-dot"></span>
-    <span>BUILDING&nbsp;NOW · EARLY ACCESS SOON</span>
-  </div>
-
   <h1>
     The honest SaaS for service businesses tired of being
-    <span class="redline">held&nbsp;hostage<span class="redline-note">NOTE: WE FIX THIS</span></span>.
+    <span class="emphasis">held&nbsp;hostage<svg class="emphasis-underline" viewBox="0 0 280 16" preserveAspectRatio="none" aria-hidden="true"><path d="M3,10 C 45,4 88,11 132,7 C 180,3 224,12 277,8" /></svg></span>.
   </h1>
 
+  <p class="emphasis-note"><em>We're fixing this.</em></p>
+
   <p class="tagline">Run your shop. Keep your keys. Cancel anytime.</p>
+
+  <div class="divider div-1" aria-hidden="true">
+    <span></span>
+    <span class="ornament"></span>
+    <span></span>
+  </div>
 
   <section class="pillars" aria-label="Product pillars">
 
     <div class="pillar">
-      <div class="pillar-num">
-        <span class="num">01</span><span class="sep"></span><span>YOUR&nbsp;DATA</span>
-      </div>
-      <div class="pillar-head">Free export, any time.</div>
-      <div class="pillar-sub">No ransom. Your tickets, customers, invoices &mdash; downloadable as CSV the day you ask.</div>
+      <h3 class="pillar-head">Your data.</h3>
+      <p class="pillar-body">Free export, any time. <strong>No ransom.</strong> Your tickets, customers, invoices &mdash; downloadable as CSV the day you ask.</p>
     </div>
 
     <div class="pillar">
-      <div class="pillar-num">
-        <span class="num">02</span><span class="sep"></span><span>YOUR&nbsp;KEYS</span>
-      </div>
-      <div class="pillar-head">Bring your own AI keys.</div>
-      <div class="pillar-sub">No 20% markup on WhatsApp or AI usage. You pay Meta what Meta charges. You pay Anthropic what Anthropic charges.</div>
+      <h3 class="pillar-head">Your keys.</h3>
+      <p class="pillar-body">Bring your own AI keys. <strong>No 20% markup</strong> on WhatsApp or AI usage. You pay Meta what Meta charges. You pay Anthropic what Anthropic charges.</p>
     </div>
 
     <div class="pillar">
-      <div class="pillar-num">
-        <span class="num">03</span><span class="sep"></span><span>YOUR&nbsp;CALL</span>
-      </div>
-      <div class="pillar-head">Cancel in one click.</div>
-      <div class="pillar-sub">Month-to-month. No contracts. No retention specialist on the phone trying to talk you out of it.</div>
+      <h3 class="pillar-head">Your call.</h3>
+      <p class="pillar-body">Cancel in one click. <strong>Month-to-month.</strong> No contracts. No retention specialist on the phone trying to talk you out of it.</p>
     </div>
 
   </section>
 
+  <div class="divider div-2" aria-hidden="true">
+    <span></span>
+    <span class="ornament"></span>
+    <span></span>
+  </div>
+
   <p class="description">
     <strong>Benchworks</strong> is an AI-native, WhatsApp-first shop OS for independent repair businesses &mdash; built by a shop, for shops. We've spent fifteen years on the workbench. The tools we wanted didn't exist, so we drew them up ourselves.
-    <span class="signature">A shop that needed this</span>
+    <span class="signoff">A shop that needed this.</span>
   </p>
 
   <div class="cta">
-    <div class="cta-label">RFP &middot; DESIGN PARTNERS WANTED</div>
     <h2>Want to be one of the first twenty?</h2>
     <p>Free for the first three months. Direct line to the team. Your feedback in the product before anyone else sees it. Drop us a line and tell us about your shop.</p>
     <a class="button" href="mailto:shaun@consoleservicecentre.co.za?subject=Benchworks%20design%20partner%20interest&amp;body=Hi%20%E2%80%94%20I%20saw%20your%20holding%20page%20at%20benchworks.app.%20Tell%20me%20more.%0D%0A%0D%0AMy%20shop%20is%3A%20%0D%0AWhat%20we%20repair%3A%20%0D%0AHow%20we%20work%20today%20(paper%2FCRM%2Fother)%3A%20%0D%0A%0D%0AThanks.">
-      <span>EMAIL US</span>
+      <span>Email us</span>
       <span class="arrow">&rarr;</span>
     </a>
   </div>
 
-  <div class="verticals">
-    <span class="label">SCOPE · PHASE 01</span>
-    <strong>Console &middot; Phone &middot; Computer &middot; Appliance &middot; Watch &middot; Jewellery &middot; Instrument &middot; Bike &middot; Locksmith &middot; Small-engine</strong> repair shops.<br>
-    Territory: <span class="geo">SA · UK · AU/NZ</span> first.
-  </div>
-
-  <!-- Title block — signature engineering drawing element -->
-  <div class="titleblock" aria-hidden="true">
-    <div class="key">PROJECT</div><div class="val accent">BENCHWORKS &nbsp;·&nbsp; SHOP OS</div>
-    <div class="key">CLIENT</div><div class="val">INDEPENDENT REPAIR SHOPS WORLDWIDE</div>
-    <div class="key">DRAFTED&nbsp;BY</div><div class="val">A SHOP THAT NEEDED THIS</div>
-    <div class="key">REV</div><div class="val">0.1 &nbsp;·&nbsp; HOLDING PAGE &nbsp;·&nbsp; 2026-05</div>
-  </div>
+  <p class="verticals">
+    <span class="scope-label">Who we're for</span>
+    <strong>Console, phone, computer, appliance, watch, jewellery, instrument, bike, locksmith &amp; small-engine</strong> repair shops &mdash; in <strong>South Africa, the UK, and Australia/NZ</strong> first.
+  </p>
 
 </main>
 
 <footer>
-  &copy; 2026 BENCHWORKS <span class="sep">·</span> <a href="mailto:shaun@consoleservicecentre.co.za">CONTACT</a> <span class="sep">·</span> SHEET 01 / 01
+  &copy; 2026 Benchworks <span class="sep">·</span> <a href="mailto:shaun@consoleservicecentre.co.za">contact</a>
 </footer>
 
 </body>
